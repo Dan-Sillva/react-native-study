@@ -5,6 +5,6 @@ import GlobalStyle from '../styles/GlobalStyle';
 
 export default () => {
     return (
-        <Text style={GlobalStyle.Tittle}>Hello World</Text>
+        <Text style={GlobalStyle.Title}>Hello World</Text>
     )
 }

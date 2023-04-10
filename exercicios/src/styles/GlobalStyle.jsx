@@ -9,8 +9,13 @@ export default StyleSheet.create({
         padding: 12,
     },
 
-    Tittle: {
-        fontSize:24,
-        marginBottom: 12
-    }
+    Title: {
+        fontSize:28,
+        marginBottom: 6,
+    },
+
+    ViewStyle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 })

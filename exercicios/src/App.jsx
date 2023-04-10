@@ -3,7 +3,9 @@ import { View } from 'react-native';
 
 // components
 import Primeiro from './components/Primeiro';
-import RandomInt from './components/RandomInt';
+// import RandomInt from './components/RandomInt';
+import Reader from './components/Reader';
+import Button from './components/Button';
 // import { Comp2, Comp3 } from './components/Multi';
 // import MinMax from './components/MinMax';
 
@@ -13,11 +15,8 @@ import GlobalStyle from './styles/GlobalStyle';
 export default () => {
     return (
         <View style={GlobalStyle.App}>
-            <Primeiro />
-            {/* <Comp2 />
-            <Comp3 /> */}
-            {/* <MinMax min='3' max='30'/> */}
-            <RandomInt min="3" max="10"/>
+            <Reader title="Charlie Brown" subtitle="Tao natural quanto a luz do dia"/>
+            <Button />
         </View>
     )
 }
