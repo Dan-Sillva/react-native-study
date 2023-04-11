@@ -5,7 +5,8 @@ import { View } from 'react-native';
 import Primeiro from './components/Primeiro';
 // import RandomInt from './components/RandomInt';
 import Reader from './components/Reader';
-import Button from './components/Button';
+import Counter from './components/Counter';
+// import Button from './components/Button';
 // import { Comp2, Comp3 } from './components/Multi';
 // import MinMax from './components/MinMax';
 
@@ -16,7 +17,7 @@ export default () => {
     return (
         <View style={GlobalStyle.App}>
             <Reader title="Charlie Brown" subtitle="Tao natural quanto a luz do dia"/>
-            <Button />
+            <Counter initialNumber="1"/>
         </View>
     )
 }
