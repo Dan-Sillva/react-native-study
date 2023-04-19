@@ -1,8 +1,8 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 // components
-import Counter from './components/counterv2/CounterV2'
+import FlatListProducts from './components/products/FlatListProducts'
 
 // styles
 import GlobalStyle from './styles/GlobalStyle';
@@ -10,7 +10,7 @@ import GlobalStyle from './styles/GlobalStyle';
 export default () => {
     return (
         <View style={GlobalStyle.App}>
-            <Counter />
+            <FlatListProducts />
         </View>
     )
 }

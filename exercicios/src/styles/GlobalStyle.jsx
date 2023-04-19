@@ -17,7 +17,7 @@ export default StyleSheet.create({
     ViewStyle: {
         justifyContent: 'center',
         alignItems: 'center',
-    
+
         marginTop: 20,
         marginBottom: 20,
     },
