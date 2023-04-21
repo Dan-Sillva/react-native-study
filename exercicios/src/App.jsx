@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 // components
-import FlatListProducts from './components/products/FlatListProducts'
+import Mega from './components/mega/Mega';
 
 // styles
 import GlobalStyle from './styles/GlobalStyle';
@@ -10,7 +10,7 @@ import GlobalStyle from './styles/GlobalStyle';
 export default () => {
     return (
         <View style={GlobalStyle.App}>
-            <FlatListProducts />
+            <Mega />
         </View>
     )
 }
