@@ -64,6 +64,9 @@ const style = StyleSheet.create({
     ViewNumbers: {
         flexDirection: 'row',
         marginBottom: 30,
+        justifyContent: 'center',
+
+        flexWrap: 'wrap',
     },
 
     Input: {

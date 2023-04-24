@@ -1,0 +1,17 @@
+{
+    "Functional component": {
+		"scope": "javascriptreact",
+		"prefix": "fcomponent",
+		"body": [
+			"import React from 'react';",
+            "import {  } from 'react-native';",
+            "",
+            "export default () => {",
+            "    return (",
+            "        <></>",
+            "    )",
+            "}",
+		],
+		"description": "Log output to console"
+	}
+}
