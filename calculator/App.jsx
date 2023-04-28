@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 
-import Display from './components/Display/Display';
+import Display from './src/components/Display/Display';
 
 export default function App() {
   return (

@@ -17,7 +17,7 @@ export default StyleSheet.create({
         marginBottom: 10,
         marginHorizontal: 10,
     },
-        
+
     TextMenu: {
         fontSize: 16,
         marginLeft: 10,
@@ -38,9 +38,9 @@ export default StyleSheet.create({
         marginBottom: 10,
         justifyContent: 'flex-end',
 
-        borderBottomWidth: 1,
-        borderColor: '#ddf'
-    }, 
+        borderBottomWidth: 0.2,
+        borderColor: '#ccc',
+    },
 
     TextDisplay: {
         fontSize: 80,
@@ -51,7 +51,7 @@ export default StyleSheet.create({
     },
 
     Keyboard: {
-        // backgroundColor:'#33ffaa', 
+        // backgroundColor:'#33ffaa',
         flex:1,
         marginBottom: 90,
         marginHorizontal: 10,
@@ -60,7 +60,7 @@ export default StyleSheet.create({
 
     Column1:{
         flex: 3,
-        // backgroundColor: '#900', 
+        // backgroundColor: '#900',
     },
 
     Line1: {
@@ -70,7 +70,7 @@ export default StyleSheet.create({
 
     Column2: {
         flex: 1,
-        // backgroundColor: '#090' 
+        // backgroundColor: '#090'
     },
 
     Line2_1: {

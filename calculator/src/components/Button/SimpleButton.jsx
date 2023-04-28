@@ -5,7 +5,10 @@ import Style from './Style';
 
 export default (props) => {
     return (
-        <TouchableOpacity style={[Style.SimpleButton, props.style]}>
+        <TouchableOpacity
+            style={[Style.SimpleButton, props.style]}
+            onPress={props.onPress}
+        >
             <Text style={[Style.TextSimpleButton, props.styleText]}>
                 {props.text}
             </Text>
