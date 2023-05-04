@@ -4,24 +4,69 @@ import { View, StyleSheet } from 'react-native'
 import Button from './src/components/Button'
 import Display from './src/components/Display';
 
+const initialState = {
+    displayValue: '0',
+    clearDisplay: false,
+    operation: null,
+    values: [0, 0],
+    current: 0
+}
+
 export default () => {
-    const [result, setResult] = useState('0')
+    const [state, setState] = useState(initialState)
 
     const addDigit = digit => {
-        setResult(digit)
+        if(digit === '.' && state.displayValue.includes('.')) {
+            return
+        }
+
+        const clearDisplay = state.displayValue === '0' || state.clearDisplay
+
+        const validateDisplayValueAndDigitValue = clearDisplay && digit != '.'
+        const newDigit = validateDisplayValueAndDigitValue ? digit : state.displayValue + digit
+
+        setState(prevState => ({ ...prevState, displayValue: newDigit }))
+
+        if(digit !== '.') {
+            const newValue = parseFloat(newDigit)
+            const values = [ ...state.values ]
+            values[state.current] = newValue
+
+            setState(prevState => ({ ...prevState, values }))
+        }
     }
 
     const clearMemory = () => {
-        setResult('0')
+        setState({ ...initialState })
     }
 
     const setOperation = operation => {
-        console.warn('set')
+        if(state.current === 0){
+            setState(prevState => ({ ...prevState, operation, current: 1, clearDisplay: true }))
+        } else {
+            const validateEqualsOperation = operation === '='
+            const values = [ ...state.values ]
+
+            try {
+                values[0] = eval(`${values[0]} ${state.operation} ${values[1]}`)
+            } catch(error) {
+                console.warn(error)
+            }
+
+            values[1] = 0
+            setState(prevState => ({
+                ...prevState,
+                displayValue: `${values[0]}`,
+                operation: validateEqualsOperation ? null : operation,
+                current: validateEqualsOperation ? 0 : 1,
+                values
+            }))
+        }
     }
 
     return (
         <View style={style.container}>
-            <Display value={result}/>
+            <Display value={state.displayValue}/>
 
             <View style={style.buttons}>
                 <Button label='AC' triple onPress={clearMemory}/>
@@ -38,7 +83,7 @@ export default () => {
                 <Button label='2' onPress={() => addDigit('2')}/>
                 <Button label='3' onPress={() => addDigit('3')}/>
                 <Button label='+' operation onPress={() => setOperation('+')}/>
-                <Button label='0' double onPress={() => addDigit('3')}/>
+                <Button label='0' double onPress={() => addDigit('0')}/>
                 <Button label='.' onPress={() => addDigit('.')}/>
                 <Button label='=' operation onPress={() => setOperation('=')}/>
             </View>
