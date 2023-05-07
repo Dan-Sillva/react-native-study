@@ -16,11 +16,11 @@ export default () => {
     const [state, setState] = useState(initialState)
 
     const addDigit = digit => {
-        if(digit === '.' && state.displayValue.includes('.')) {
+        const clearDisplay = state.displayValue === '0' || state.clearDisplay
+
+        if( digit === '.' && state.displayValue.includes('.') && !clearDisplay ) {
             return
         }
-
-        const clearDisplay = state.displayValue === '0' || state.clearDisplay
 
         const validateDisplayValueAndDigitValue = clearDisplay && digit != '.'
         const newDigit = validateDisplayValueAndDigitValue ? digit : state.displayValue + digit
