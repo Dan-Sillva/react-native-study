@@ -20,8 +20,15 @@ export default () => {
     }
 
     const insert = (character) => {
+        const containOperator = result.includes('+') || result.includes('-') ||
+                                result.includes('*') || result.includes('/')
+
+        if(character === '.' && result.includes('.') && !containOperator){
+            return
+        }
+
         if(character === '.'){
-            setResult(result + character)        
+            setResult(result + character)
         } else {
             if (result === '0' && character != '.') {
                 setResult(character)
@@ -31,43 +38,8 @@ export default () => {
         }
     }
 
-    const opFunctions = {
-        0: (a, b) => a*b,
-        1: (a, b) => a/b,
-        2: (a, b) => a+b,
-        3: (a, b) => a-b,
-    }
-
     const calculateResult = () => {
-        const operators = ['x', '÷', '+', '-']
-        
-        let auxResult = result.split('')
-        
-        for(let n = 0; n < auxResult.length; n++){
-            if(auxResult[n] === '.'){
-                auxResult[n] = auxResult[n-1] + auxResult[n] + auxResult[n+1]
-                auxResult.splice(n-1, 1)
-                auxResult.splice(n, 1)
-        
-                auxResult[n-1] = parseFloat(auxResult[n-1])
-            }
-        }
-
-        auxResult = auxResult.map(char => {
-            return (!isNaN(char) && char % 1 === 0) ? parseInt(char) : char
-        })
-        
-        operators.forEach((op, indexOp) => {
-            auxResult.map((element, indexElement) => {
-                if(element == op){
-                    auxResult[indexElement] = opFunctions[indexOp](auxResult[indexElement - 1], auxResult[indexElement + 1])    
-                    auxResult.splice(indexElement - 1, 1)
-                    auxResult.splice(indexElement, 1)
-                }
-            })
-        })
-
-        setResult(auxResult)
+        setResult(eval(result).toString())
     }
 
     return (
@@ -166,8 +138,8 @@ export default () => {
                     <View style={Style.Line2_1}>
                         <SimpleButton
                             style={{backgroundColor:'#ae78ff'}}
-                            text={'x'}
-                            onPress={() => {insert('x')}}
+                            text={'*'}
+                            onPress={() => {insert('*')}}
                         />
                         <SimpleButton
                             style={{backgroundColor:'#ae78ff'}}
