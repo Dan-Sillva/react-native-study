@@ -22,7 +22,7 @@ export default () => {
       <Field mined opened />
       <Field mined opened exploded/>
 
-      <Field flagged />
+      <Field flagged/>
     </View>
   );
 }
