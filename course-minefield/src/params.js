@@ -1,7 +1,7 @@
 import { Dimensions } from "react-native";
 
 const params = {
-    blockSize:32,
+    blockSize:36,
     borderSize:5,
     fontSize: 18,
     headerRatio: 0.15, //prop do painel superior
