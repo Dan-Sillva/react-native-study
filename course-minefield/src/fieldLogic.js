@@ -4,7 +4,7 @@ const createBoard = (rows, columns) => {
             return {
                 row,
                 column,
-                opened: true,
+                opened: false,
                 flagged: false,
                 mined: false,
                 exploded: false,

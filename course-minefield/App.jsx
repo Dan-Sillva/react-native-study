@@ -1,19 +1,41 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 
 import params from './src/params';
 import Board from './src/components/Board';
 import createMinedBoard from './src/fieldLogic';
+import { cloneBoard, openField, hadExplosion, wonGame, showMines } from './src/gameLogic';
 
 export default () => { 
-    const difficultLevel = 0.1
-
     const rows = params.getRowsAmount()
     const columns = params.getColumnsAmount()
     
-    const minesAmount = Math.ceil(rows * columns * difficultLevel)
+    const minesAmount = Math.ceil(rows * columns * params.difficultLevel)
 
     const [board, setBoard] = useState(createMinedBoard(rows, columns, minesAmount))
+
+    const [won, setWon] = useState(false)
+    const [lost, setLost] = useState(false)
+
+    const onOpenField = (row, column) => {
+        const newBoard = cloneBoard(board)
+
+        openField(newBoard, row, column)
+        
+        const youLost = hadExplosion(newBoard)
+        const youWon = wonGame(newBoard)
+
+        if (lost){
+            showMines(newBoard)
+            Alert.alert('Perdeu :c')
+        }
+
+        if (won) Alert.alert('Ganhou :D')
+
+        setBoard(newBoard)
+        setWon(youWon)
+        setLost(youLost)
+    }
 
     return (
         <View style={styles.container}>
@@ -23,7 +45,7 @@ export default () => {
             </Text>
 
             <View style={styles.board}>
-                <Board board={board}/>
+                <Board board={board} onOpenField={onOpenField}/>
             </View>
         </View>
     );
