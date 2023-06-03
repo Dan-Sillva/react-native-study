@@ -6,32 +6,31 @@ const cloneBoard = board => {
     })
 }
 
+// pega os vizinhos do campo selecionado
 const getNeighbors = (board, row, column) => {
-    const neighbors = []
     const rows = [row-1, row, row+1]
     const columns = [column-1, column, column+1]
 
-    rows.forEach(r => {
-        columns.forEach(c => {
-            const diferent = r !== row || c !== column
-            const validRow = r >= 0 && r < board.length
-            const validColumn = c >= 0 || c < board[0].length
-
-            if (diferent && validRow && validColumn){
-                neighbors.push(board[r][c])
+    const result = rows.map(interRow => {
+        return columns.map(interColumn => {
+            if((interRow < board.length && interRow >= 0) && (interColumn < board[0].length && interColumn >= 0)){
+                return board[interRow][interColumn]
             }
         })
-    })
+    }).flat()
 
-    console.table(neighbors)
-    return neighbors   
+    return result.filter(field => field != undefined)
 }
 
+// verifica se a visinhança é segura
 const safeNeighborhood = (board, row, column) => {
+    const neighbors = getNeighbors(board, row, column)
     const safes = (result, neighbor) => result && !neighbor.mined
-    return getNeighbors(board, row, column).reduce(safes, true)
+    
+    return neighbors.reduce(safes, true)
 }
 
+// abre os campos
 const openField = (board, row, column) => {
     const field = board[row][column]
 
@@ -49,7 +48,7 @@ const openField = (board, row, column) => {
     }
 }
 
-const fields = board => [].concat(...board)
+const fields = board => board.flat()
 
 const hadExplosion = board => fields(board)
     .filter(field => field.exploded).length > 0

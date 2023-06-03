@@ -25,6 +25,7 @@ const spreadMines = (board, minesAmount) => {
 
         if(!board[rowSelected][columnSelected].mined){
             board[rowSelected][columnSelected].mined = true
+            // board[rowSelected][columnSelected].opened = true
             minesPlanted++
         }
     }
