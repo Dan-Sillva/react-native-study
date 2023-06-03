@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
 
 import params from './src/params';
-import Board from './src/components/Board';
 import createMinedBoard from './src/fieldLogic';
-import { cloneBoard, openField, hadExplosion, wonGame, showMines } from './src/gameLogic';
+import { cloneBoard, openField, hadExplosion, wonGame, showMines, invertFlag, flagsUsed } from './src/gameLogic';
+
+import Board from './src/components/Board';
+import Header from './src/components/Header';
 
 export default () => { 
     const rows = params.getRowsAmount()
@@ -14,8 +16,9 @@ export default () => {
 
     const [board, setBoard] = useState(createMinedBoard(rows, columns, minesAmount))
 
-    const [won, setWon] = useState(false)
-    const [lost, setLost] = useState(false)
+    const onNewGame = () => {
+        setBoard(createMinedBoard(rows, columns, minesAmount))
+    }
 
     const onOpenField = (row, column) => {
         const newBoard = cloneBoard(board)
@@ -33,19 +36,25 @@ export default () => {
         if (youWon) Alert.alert('Ganhou :D')
 
         setBoard(newBoard)
-        setWon(youWon)
-        setLost(youLost)    
+    }
+
+    const onFlaggingField = (row, column) => {
+        const newBoard = cloneBoard(board)
+        
+        invertFlag(newBoard, row, column)
+        
+        const youWon = wonGame(newBoard)
+        if (youWon) Alert.alert('Ganhou :D')
+
+        setBoard(newBoard)
     }
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>==-=== Welcome to MineField! ===-==</Text>
-            <Text style={styles.subtitle}>grid size:
-                {params.getColumnsAmount()}x{params.getRowsAmount()}
-            </Text>
+            <Header flagsLeft={minesAmount - flagsUsed(board)} onNewGame={onNewGame}/>
 
             <View style={styles.board}>
-                <Board board={board} onOpenField={onOpenField}/>
+                <Board board={board} onOpenField={onOpenField} onFlaggingField={onFlaggingField}/>
             </View>
         </View>
     );

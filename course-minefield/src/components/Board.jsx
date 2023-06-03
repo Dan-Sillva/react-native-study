@@ -9,7 +9,8 @@ export default props => {
     const componentBoard = props.board.map((row, rowIndex) => {
         const fields = row.map((field, columnIndex) => {
             return <Field {...field} key={columnIndex} 
-                    onOpen={() => props.onOpenField(rowIndex, columnIndex)}/>
+                    onOpen={() => props.onOpenField(rowIndex, columnIndex)}
+                    onFlagging={() => props.onFlaggingField(rowIndex, columnIndex)}/>
         })
         return <View style={style.rows} key={rowIndex}>{fields}</View>
     })
