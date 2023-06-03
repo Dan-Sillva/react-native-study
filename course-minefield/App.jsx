@@ -25,16 +25,16 @@ export default () => {
         const youLost = hadExplosion(newBoard)
         const youWon = wonGame(newBoard)
 
-        if (lost){
+        if (youLost){
             showMines(newBoard)
             Alert.alert('Perdeu :c')
         }
 
-        if (won) Alert.alert('Ganhou :D')
+        if (youWon) Alert.alert('Ganhou :D')
 
         setBoard(newBoard)
         setWon(youWon)
-        setLost(youLost)
+        setLost(youLost)    
     }
 
     return (
