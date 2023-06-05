@@ -11,7 +11,7 @@ export default (props) => {
                     <Flag bigger/>
                 </TouchableOpacity>
 
-                <Text style={style.flagsLeft}>-:{props.flagsLeft}:-</Text>
+                <Text style={style.flagsLeft}>: {props.flagsLeft}</Text>
             </View>
             <TouchableOpacity style={style.button} onPress={props.onNewGame}>
                 <Text style={style.buttonLabel} >New Game</Text>
@@ -26,9 +26,10 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#EEE',
         alignItems: 'center',
-        justifyContent: 'space-around',
-        paddingTop: 20,
-        paddingHorizontal: 20
+        justifyContent: "space-around",
+        paddingHorizontal: 20,
+        width: 400,
+        marginBottom: 20
     },
 
     flagContainer: {
@@ -48,8 +49,9 @@ const style = StyleSheet.create({
     },
 
     button: {
-        backgroundColor: '#9a9abb',
-        padding: 5
+        backgroundColor: '#f88',
+        padding: 10,
+        borderRadius: 10
     },
 
     buttonLabel: {

@@ -63,7 +63,9 @@ const showMines = board => fields(board).filter(field => field.mined)
 
 const invertFlag = (board, row, column) => {
     const field = board[row][column]
-    field.flagged = !field.flagged
+    if (!field.opened){
+        field.flagged = !field.flagged
+    }
 }
 
 const flagsUsed = board => fields(board).filter(field => field.flagged).length

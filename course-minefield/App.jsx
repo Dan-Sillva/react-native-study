@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
+import Constants from 'expo-constants';
 
 import params from './src/params';
 import createMinedBoard from './src/fieldLogic';
@@ -51,7 +52,9 @@ export default () => {
 
     return (
         <View style={styles.container}>
-            <Header flagsLeft={minesAmount - flagsUsed(board)} onNewGame={onNewGame}/>
+            <View style={styles.header}>
+                <Header flagsLeft={minesAmount - flagsUsed(board)} onNewGame={onNewGame}/>
+            </View>
 
             <View style={styles.board}>
                 <Board board={board} onOpenField={onOpenField} onFlaggingField={onFlaggingField}/>
@@ -65,21 +68,11 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#141412',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        paddingTop: Constants.statusBarHeight
     },
 
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-
-        color:'#fff'
-    },
-    
-    subtitle: {
-        fontSize: 18,
-        marginBottom: 25,
-
-        color:'#fff'
+    header: {
+        flex: 1
     },
 
     board: {
