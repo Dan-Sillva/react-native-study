@@ -8,6 +8,7 @@ import { cloneBoard, openField, hadExplosion, wonGame, showMines, invertFlag, fl
 
 import Board from './src/components/Board';
 import Header from './src/components/Header';
+import LevelSelection from './src/screens/LevelSelection';
 
 export default () => { 
     const rows = params.getRowsAmount()
@@ -16,6 +17,7 @@ export default () => {
     const minesAmount = Math.ceil(rows * columns * params.difficultLevel)
 
     const [board, setBoard] = useState(createMinedBoard(rows, columns, minesAmount))
+    const [showLevelSelection, setShowLevelSelection] = useState(false)
 
     const onNewGame = () => {
         setBoard(createMinedBoard(rows, columns, minesAmount))
@@ -50,10 +52,20 @@ export default () => {
         setBoard(newBoard)
     }
 
+    const onLevelSelected = level => {
+        params.difficultLevel = level
+        setBoard(createMinedBoard(rows, columns, minesAmount))
+    }
+
     return (
         <View style={styles.container}>
+            <LevelSelection isVisible={showLevelSelection}
+                onLevelSelected={onLevelSelected}
+                onCancel={() => setShowLevelSelection(false)}/>
+
             <View style={styles.header}>
-                <Header flagsLeft={minesAmount - flagsUsed(board)} onNewGame={onNewGame}/>
+                <Header flagsLeft={minesAmount - flagsUsed(board)} onNewGame={onNewGame}
+                    onFlagPress={() => setShowLevelSelection(true)}/>
             </View>
 
             <View style={styles.board}>

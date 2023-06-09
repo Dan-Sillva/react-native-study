@@ -24,7 +24,7 @@ const style = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
-        backgroundColor: '#EEE',
+        backgroundColor: '#fafafa',
         alignItems: 'center',
         justifyContent: "space-around",
         paddingHorizontal: 20,
@@ -49,14 +49,14 @@ const style = StyleSheet.create({
     },
 
     button: {
-        backgroundColor: '#f88',
+        backgroundColor: '#6e33a6',
         padding: 10,
         borderRadius: 10
     },
 
     buttonLabel: {
         fontSize: 20,
-        color: '#ddd',
-        fontWeight: 'bold'
+        color: '#eee',
+        fontWeight: 'bold',
     }
 })
