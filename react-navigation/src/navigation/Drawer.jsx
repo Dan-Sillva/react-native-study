@@ -1,4 +1,4 @@
-// import React from "react";
+import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import ViewA from "../views/ViewA";
@@ -9,10 +9,10 @@ const Drawer = createDrawerNavigator()
 
 export default props => {
     return (
-    <Drawer.Navigator>
-        <Drawer.Screen name="View A" component={ViewA} />
-        <Drawer.Screen name="View B" component={ViewB} />
-        <Drawer.Screen name="View C" component={ViewC} />
-    </Drawer.Navigator>
+        <Drawer.Navigator initialRouteName="View A" screenOptions={{headerShown: false}}>
+            <Drawer.Screen name="View A" component={ViewA} />
+            <Drawer.Screen name="View B" component={ViewB} />
+            <Drawer.Screen name="View C" component={ViewC} />
+        </Drawer.Navigator>
     )
 }
