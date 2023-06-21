@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import ViewA from "../views/ViewA";
@@ -10,25 +10,31 @@ const Stack = createNativeStackNavigator()
 
 export default props => {
     return (
-        <Stack.Navigator initialRouteName="View A">
+        <Stack.Navigator initialRouteName="View A" screenOptions={{headerShown: false}}>
             <Stack.Screen name="View A" options={{title: ':D'}}>
                 {screenProps => (
-                    <PassingStack navigate={screenProps.navigation.navigate} nextView={'View B'}>
+                    <PassingStack advance={screenProps.navigation.navigate} nextView={'View B'}>
                         <ViewA />
                     </PassingStack>
                 )}
             </Stack.Screen>
             <Stack.Screen name="View B" options={{title: ':D'}}>
                 {screenProps => (
-                    <PassingStack navigate={screenProps.navigation.navigate} nextView={'View C'}>
+                    <PassingStack 
+                    advance={screenProps.navigation.navigate} 
+                    goBack={screenProps.navigation.goBack}
+                    nextView={'View C'}>
                         <ViewB />
                     </PassingStack>
                 )}
             </Stack.Screen>
             <Stack.Screen name="View C" options={{title: ':D'}}>
                 {screenProps => (
-                    <PassingStack>
-                        <ViewC />
+                    <PassingStack 
+                    advance={screenProps.navigation.push}
+                    goBack={screenProps.navigation.goBack}
+                    nextView={'View C'}>
+                        <ViewC {...screenProps}/>
                     </PassingStack>
                 )}
             </Stack.Screen>

@@ -3,12 +3,14 @@ import { StyleSheet, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
 import Stack from './Stack';
+import Tab from './Tab';
+import Drawer from './Drawer';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
         <NavigationContainer>
-            <Stack />
+            <Drawer />
         </NavigationContainer>
     </SafeAreaView>
   );

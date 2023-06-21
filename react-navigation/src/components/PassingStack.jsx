@@ -2,14 +2,18 @@ import React from "react";
 import { StyleSheet, View, Button } from "react-native";
 
 export default props => {
-    const { navigate, nextView } = props
-    const buttonPass = <Button title='Avançar' onPress={() => navigate(nextView)}/> 
+    const { goBack, advance, nextView } = props
+    const buttonPass = <Button title='Avançar' onPress={() => advance(nextView, {number: parseInt(Math.random() * 100)})}/> 
+    const buttonBack = <Button title='  Voltar  ' onPress={() => goBack()}/>
 
     return (
-        <View style={{flex: 1}}>
-            {navigate ? buttonPass : false}
+        <View style={styles.container}>
+            <View style={styles.buttons}>
+                {goBack ? buttonBack : false}
+                {advance ? buttonPass : false}
+            </View>
 
-            <View style={styles.container}>
+            <View style={{flex: 1}}>
                 {props.children}
             </View>
         </View>
@@ -18,6 +22,12 @@ export default props => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        marginTop: 46
+    },
+
+    buttons: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly'
     }
 })
