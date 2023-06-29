@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 
 export default props => {
     const number = props.route
@@ -14,6 +14,7 @@ export default props => {
             <Text style={styles.text}>
                 {number}
             </Text>
+            {/* <Button title={'ola'} onPress={() => props.navigation.openDrawer()}/> */}
         </View>
     )
 }

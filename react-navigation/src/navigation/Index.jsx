@@ -12,7 +12,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
         <NavigationContainer>
-            <Drawer />
+            <Tab />
         </NavigationContainer>
     </SafeAreaView>
   );
