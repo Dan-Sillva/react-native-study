@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
+
+import UserCardList from '../../components/UserCardList/Index';
 
 import styles from './styles';
 
-export default function App() {
+export default props => {
   return (
-    <View style={styles.container}>
-        <Text>UserForm</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <UserCardList/>
+    </SafeAreaView>
   );
 }
