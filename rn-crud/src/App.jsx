@@ -6,19 +6,22 @@ import { Ionicons } from '@expo/vector-icons';
 
 import UserList from '../src/View/UserList/Index';
 import UserForm from '../src/View/UserForm/Index';
+import { UserProvider } from "./context/UserContext";
 
 const Stack = createNativeStackNavigator()
 
 export default props => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator {...navigatorProps}>
+    <UserProvider>
+      <NavigationContainer>
+        <Stack.Navigator {...navigatorProps}>
 
-        <Stack.Screen {...userListScreenProps}/>
-        <Stack.Screen {...userFormScreenProps}/>
+          <Stack.Screen {...userListScreenProps}/>
+          <Stack.Screen {...userFormScreenProps}/>
 
-      </Stack.Navigator>
-    </NavigationContainer>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </UserProvider>
   );
 }
 

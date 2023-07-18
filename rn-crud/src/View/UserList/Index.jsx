@@ -8,7 +8,7 @@ import styles from './styles';
 export default props => {
   return (
     <SafeAreaView style={styles.container}>
-      <UserCardList/>
+      <UserCardList {...props}/>
     </SafeAreaView>
   );
 }

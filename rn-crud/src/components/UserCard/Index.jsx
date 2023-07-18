@@ -6,7 +6,7 @@ import styles from './styles';
 const Icon = MaterialCommunityIcons
 
 export default props => {
-  const user = props.user
+  const { user, editAction, deleteAction } = props
 
   return (
     <View style={styles.container}>
@@ -24,10 +24,10 @@ export default props => {
         </View>
 
         <View style={styles.buttonsContainer}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={()=> {props.nav.navigate('UserForm', user)}}>
                 <Icon name="clipboard-edit" size={22} color="#36373b" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={deleteAction}>
                 <Icon name="delete" size={22} color="#36373b" />
             </TouchableOpacity>
         </View>
